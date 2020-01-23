@@ -59,10 +59,10 @@ public class ProcessOrder{
                     do {
                         userin = userInput();
                     }while(userin != 1 && userin != 2);
-                    if (userin = 1) {
+                    if (userin == 1) {
                         //sendToChef(order);
                         order = new Orders(); //clean order
-                        println("\r\nOrder has been processed.");
+                        System.out.println("\r\nOrder has been processed.");
                     }
                     break;
                 case 4:
