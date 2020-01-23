@@ -32,7 +32,7 @@ public class Orders{
         for (int x=0; x<order.size(); x++){
             output = output.concat("\r\n" + order.get(x).toString());
         }
-        output = output.concat("\r\n TOTAL: " + total());
+        output = output.concat("\r\n TOTAL: " + total() + "\r\n___________");
         return output;
     }
     

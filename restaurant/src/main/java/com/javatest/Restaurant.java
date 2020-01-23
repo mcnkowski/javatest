@@ -6,81 +6,8 @@ import java.util.Scanner;
 public class Restaurant {
     static FoodMenu menu = createMenu();
     public static void main(String args[]){
-        //try putting all of this as a method inside of a processing class of some sort
-        Orders order = new Orders();
-        Meal tempMeal;
-        Drink tempDrink;
-        int userInput;
-        int userInput2;
-        Scanner scanInput = new Scanner(System.in);
-        menuLoop:
-        while(true){
-            System.out.println("1. Order a lunch.");
-            System.out.println("2. Order a drink.");
-            System.out.println("3. Finalize order.");
-            System.out.println("4. Cancel order.");
-            System.out.println("0. Exit.");
-            userInput = scanInput.nextInt(); //put all scanInput.nextInt(); into a method that will catch exceptions!!!!
-            switch (userInput) {
-                case 1:
-                    //catch exceptions for out of bounds indexes
-                    arrayListPrinter(menu.getAllCuisines());
-                    userInput = scanInput.nextInt();
-                    userInput--;
-                    
-                    arrayListPrinter(menu.getCuisine(userInput));
-                    userInput2 = scanInput.nextInt();
-                    userInput2--;
-                    tempMeal = menu.getMeal(userInput,userInput2);
-                    
-                    arrayListPrinter(menu.getAllDesserts());
-                    userInput = scanInput.nextInt();
-                    userInput--;
-                    order.addLunch(tempMeal,menu.getDessert(userInput));
-                    break;
-                case 2:
-                    arrayListPrinter(menu.getAllDrinks());
-                    userInput = scanInput.nextInt();
-                    userInput--;
-                    try {
-                        tempDrink = new Drink(menu.getDrink(userInput)); //needs a new object so that we can edit lemon and ice states
-                        System.out.println("1. Add lemon.");
-                        System.out.println("2. Add ice.");
-                        System.out.println("3. Add both.");
-                        userInput = scanInput.nextInt();
-                        if (userInput==1 || userInput==3) {
-                            tempDrink.setLemon();
-                        }
-                        if (userInput==2 || userInput==3) {
-                            tempDrink.setIce();
-                        }
-                        order.addDrink(tempDrink);
-                    }
-                    catch(IndexOutOfBoundsException e) {
-                        System.out.println("Invalid item index.");
-                    }
-                    break;
-                case 3:
-                    System.out.println(order);
-                    //in an actual software this would also pass the order to the kitchen
-                    order = new Orders(); //clean order
-                    break;
-                case 4:
-                    order = new Orders();
-                    System.out.println("Order cancelled.");
-                    break;
-                case 0:
-                    break menuLoop;
-                default:
-            }
-        }
-    }
-    
-    private static void arrayListPrinter(ArrayList<?> array){
-        array.forEach(x -> {
-            int index = array.indexOf(x)+1;
-            System.out.println(index + " " + x.toString());
-        });
+       ProcessOrder program = new ProcessOrder(menu);
+       program.run();
     }
     
     private static FoodMenu createMenu(){
