@@ -7,7 +7,6 @@ public class Drink extends FoodItem {
     Drink(String name, double price) {
         setName(name);
         setPrice(price);
-        //setCuisine("Drink");
     }
     
     Drink(Drink copy){
