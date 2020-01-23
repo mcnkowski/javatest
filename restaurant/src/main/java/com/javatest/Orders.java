@@ -28,9 +28,9 @@ public class Orders{
     }
     
     public String toString(){
-        String output = "PLACEHOLDER"; //TODO
+        String output = "Order: "; //TODO
         for (int x=0; x<order.size(); x++){
-            output = output.concat("\r\n" + order.get(x).getName() + " " + order.get(x).getPrice());
+            output = output.concat("\r\n" + order.get(x).toString());
         }
         output = output.concat("\r\n TOTAL: " + total());
         return output;

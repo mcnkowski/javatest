@@ -10,12 +10,27 @@ public class Drink extends FoodItem {
         //setCuisine("Drink");
     }
     
+    Drink(Drink copy){
+        setName(copy.getName());
+        setPrice(copy.getPrice());
+        this.lemon = copy.checkLemon();
+        this.ice = copy.checkIce();
+    }
+    
     public void setLemon() {
         lemon = lemon ? false : true;
     }
     
     public void setIce() {
         ice = ice ? false : true;
+    }
+    
+    public Boolean checkLemon() {
+        return lemon;
+    }
+    
+    public Boolean checkIce() {
+        return ice;
     }
         
     public String toString() {

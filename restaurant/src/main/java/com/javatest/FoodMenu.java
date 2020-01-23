@@ -48,7 +48,7 @@ public class FoodMenu {
         });
     }
     
-    public ArrayList<Cuisine> getAllCourses(){
+    public ArrayList<Cuisine> getAllCuisines(){
         return courses;
     }
     
@@ -125,7 +125,7 @@ public class FoodMenu {
         public String toString(){
             String output = this.name;
             for (int x=0; x<items.size(); x++){
-                output = output.concat("\r\n" + this.items.get(x).getName() + " " + this.items.get(x).getPrice());
+                output = output.concat("\r\n" + this.items.get(x).toString());
             }
             return output;
         }
