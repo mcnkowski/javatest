@@ -165,7 +165,7 @@ public class ProcessOrder{
                 if (userin2==2 || userin2==3) {
                     tempdrink.setIce();
                 }
-                if (userin2==1 || userin2==2 || userin2 ==3 || userin2==4) { 
+                if (userin2>=1 && userin2<=4) { 
                     return tempdrink;
                     //this if-statement isn't necessary but it keeps the menu consistent
                     //otherwise any integer other than 1,2,3 would return drink with no ice or lemon
