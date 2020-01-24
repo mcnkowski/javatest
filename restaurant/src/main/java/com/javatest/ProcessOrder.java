@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 
 public class ProcessOrder{
     private FoodMenu menu;
+    private Scanner scanInput = new Scanner(System.in);
     
     ProcessOrder(FoodMenu menu){
         this.menu = menu;
@@ -24,7 +25,7 @@ public class ProcessOrder{
             System.out.println(""); //Empty line to make the menu easier to read.
             System.out.println("1. Order a lunch.");
             System.out.println("2. Order a drink.");
-            System.out.println("3. Finalize order.");
+            System.out.println("3. Show total/Finalize order.");
             System.out.println("4. Cancel order.");
             System.out.println("0. Exit.");
             inputSwCase = userInput();
@@ -78,10 +79,9 @@ public class ProcessOrder{
     }
     
     private int userInput() { //get keyboard input and check if it's an integer
-        Scanner scanInput = new Scanner(System.in);
         int input;
         while(true){
-            try {
+            try{
                 input = scanInput.nextInt();
                 return input;
             }
@@ -139,7 +139,7 @@ public class ProcessOrder{
             }
         }
     }
-    
+
     private Drink processDrink() {
         Drink tempdrink;
         int userin, userin2;
@@ -149,7 +149,8 @@ public class ProcessOrder{
             try {
                 userin = userInput();
                 userin--;
-                tempdrink = new Drink(menu.getDrink(userin)); //needs a new object so that we can edit lemon and ice states
+                tempdrink = new Drink(menu.getDrink(userin)); //needs a new object and not a reference so that we can edit lemon and ice states
+                System.out.println("");
                 System.out.println("1. Add lemon.");
                 System.out.println("2. Add ice.");
                 System.out.println("3. Add both.");
