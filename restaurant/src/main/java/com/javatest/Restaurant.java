@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Restaurant {
-    static FoodMenu menu = createMenu();
     public static void main(String args[]){
+	   FoodMenu menu = createMenu();
+	   menu.sortMenu();
+	   
        ProcessOrder program = new ProcessOrder(menu);
        program.run();
     }

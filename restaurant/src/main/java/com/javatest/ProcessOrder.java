@@ -32,7 +32,7 @@ public class ProcessOrder{
                 case 1:
                     mealstorage = processMeal();
                     dessertstorage = processDessert();
-                    System.out.println(""); //Empty line
+                    System.out.println("");
                     System.out.println("Confirm order:\r\n1.Yes\r\n2.No");
                     do {
                         userin = userInput();
@@ -43,7 +43,7 @@ public class ProcessOrder{
                     break;
                 case 2:
                     drinkstorage = processDrink();
-                    System.out.println(""); //Empty line
+                    System.out.println("");
                     System.out.println("Confirm order:\r\n1.Yes\r\n2.No");
                     do {
                         userin = userInput();
@@ -53,7 +53,7 @@ public class ProcessOrder{
                     }
                     break;
                 case 3:
-                    System.out.println(""); //Empty line
+                    System.out.println("");
                     System.out.println(order);
                     System.out.println("Finalize order:\r\n1.Yes\r\n2.No");
                     do {
@@ -86,7 +86,7 @@ public class ProcessOrder{
                 return input;
             }
             catch (InputMismatchException e) {
-                System.out.println("Invalid input.");
+                System.out.println("Invalid input. Please use integers only.");
                 scanInput.nextLine(); //consume newline to avoid endless exception loop
             }
         }
@@ -157,15 +157,15 @@ public class ProcessOrder{
                 userin2 = userInput();
                 if (userin2==1 || userin2==3) {
                     tempdrink.setLemon();
-                    return tempdrink;
                 }
-                else if (userin2==2 || userin2==3) {
+                if (userin2==2 || userin2==3) {
                     tempdrink.setIce();
-                    return tempdrink;
                 }
-                else if (userin2==4) {
+                if (userin2==1 || userin2==2 || userin2 ==3 || userin2==4) { 
                     return tempdrink;
-                }
+					//this if-statement isn't necessary but it keeps the menu consistent
+					//otherwise any integer other than 1,2,3 would return drink with no ice or lemon
+                } 
                 else {
                     System.out.println("Invalid input.");
                 }
@@ -176,11 +176,11 @@ public class ProcessOrder{
         }
     }
     
-    private static void arrayListPrinter(ArrayList<?> array){
-        System.out.println("");//Empty line
+    private void arrayListPrinter(ArrayList<?> array){
+        System.out.println("");
         array.forEach(x -> {
             int index = array.indexOf(x)+1;
-            System.out.println(index + " " + x.toString());
+            System.out.println(index + ". " + x.toString());
         });
     }
 }

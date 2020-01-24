@@ -3,10 +3,9 @@ package com.javatest;
 import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.function.Consumer;
+//import java.util.function.Consumer;
 
 public class FoodMenu {
-    //private ArrayList<Meal> courses = new ArrayList<Meal>();
     private ArrayList<Dessert> desserts = new ArrayList<Dessert>();
     private ArrayList<Drink> drinks = new ArrayList<Drink>();
     private ArrayList<Cuisine> courses = new ArrayList<Cuisine>();
@@ -91,16 +90,6 @@ public class FoodMenu {
     public Drink getDrink(int index) {
         return drinks.get(index);
     }
-    
-    /*public void removeItem(FoodItem item) {
-        if (item instanceof Meal) {
-            courses.remove(item);
-        } else if (item instanceof Dessert) {
-            desserts.remove(item);
-        } else if (item instanceof Drink) {
-            drinks.remove(item);
-        }
-    }*/
     
     public void sortMenu() { //sort menu items alphabetically; cuisines stay in the order they were added
         courses.forEach(x -> x.items.sort(Comparator.comparing(Meal::getName)));
