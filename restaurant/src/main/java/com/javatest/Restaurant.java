@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Restaurant {
     public static void main(String args[]){
-	   FoodMenu menu = createMenu();
-	   menu.sortMenu();
-	   
+       FoodMenu menu = createMenu();
+       menu.sortMenu();
+       
        ProcessOrder program = new ProcessOrder(menu);
        program.run();
     }
