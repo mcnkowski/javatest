@@ -111,6 +111,10 @@ public class FoodMenu {
             items = new ArrayList<Meal>();
         }
         
+        public Boolean isEmpty() {
+            return items.isEmpty();
+        }
+        
         public String toString(){
             String output = this.name;
             for (int x=0; x<items.size(); x++){

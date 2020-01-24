@@ -9,8 +9,11 @@ public class ProcessOrder{
     private Scanner scanInput = new Scanner(System.in);
     
     ProcessOrder(FoodMenu menu){
-        this.menu = menu;
-        //add an exception for when the menu is empty
+        if (missingContent(menu)){
+            throw new IllegalArgumentException("Constructor has been passed an incomplete FoodMenu object.");
+        }else{
+            this.menu = menu;
+        }
     }
     
     public void run(){
@@ -183,5 +186,17 @@ public class ProcessOrder{
             int index = array.indexOf(x)+1;
             System.out.println(index + ". " + x.toString());
         });
+    }
+    
+    private Boolean missingContent(FoodMenu menu){
+        Boolean hasntdessert = menu.getAllDesserts().isEmpty();
+        Boolean hasntdrink = menu.getAllDrinks().isEmpty();
+        Boolean hasntmeal = menu.getAllCuisines().stream().anyMatch(FoodMenu.Cuisine::isEmpty);
+        
+        if (hasntdessert || hasntdrink || hasntmeal){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
