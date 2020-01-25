@@ -2,6 +2,7 @@ package com.javatest;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 //import java.util.function.Consumer;
 
@@ -47,6 +48,11 @@ public class FoodMenu {
         });
     }
     
+    public void addCourses(String cuisineName, Meal[] meals){
+        ArrayList<Meal> courses = new ArrayList<Meal>(Arrays.asList(meals));
+        this.addCourses(cuisineName,courses);
+    }
+    
     public ArrayList<Cuisine> getAllCuisines(){
         return courses;
     }
@@ -67,6 +73,10 @@ public class FoodMenu {
         this.desserts.addAll(desserts);
     }
     
+    public void addDesserts(Dessert[] desserts){
+        this.addDesserts(new ArrayList<Dessert>(Arrays.asList(desserts)));
+    }
+    
     public ArrayList<Dessert> getAllDesserts(){
         return desserts;
     }
@@ -81,6 +91,10 @@ public class FoodMenu {
     
     public void addDrinks(Collection<? extends Drink> drinks) {
         this.drinks.addAll(drinks);
+    }
+    
+    public void addDrinks(Drink[] drinks){
+        this.addDrinks(new ArrayList<Drink>(Arrays.asList(drinks)));
     }
     
     public ArrayList<Drink> getAllDrinks(){

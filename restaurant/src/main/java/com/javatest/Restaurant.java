@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Restaurant {
+    
     public static void main(String args[]){
        FoodMenu menu = createMenu();
        menu.sortMenu();
