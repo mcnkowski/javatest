@@ -3,20 +3,35 @@ package com.javatest;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.AfterEach;
+//import java.io.InputStream;
+//import java.io.ByteArrayInputStream;
 
-public class ProcessOrder{
+
+/*
+modified ProcessOrder class for testing
+ends after one order has been processed
+doesn't catch exceptions
+*/
+
+public class TestProcessOrder{
     private FoodMenu menu;
-    private Scanner scanInput = new Scanner(System.in);
+	private Scanner scanInput;
+	
     
-    ProcessOrder(FoodMenu menu){
+    TestProcessOrder(FoodMenu menu,InputStream in){ //pass an input stream that simulates user input
         if (missingContent(menu)){
             throw new IllegalArgumentException("Constructor has been passed an incomplete FoodMenu object.");
         }else{
             this.menu = menu;
+			this.scanInput = new Scanner(in); //Use ByteArrayInputStream in = new ByteArrayInputStream(("1" + System.lineSeparator() + "2").getBytes()); to get multiple inputs for different keyboard.nextLine() calls.
         }
     }
     
-    public void run(){
+    public Orders run(){
         Orders order = new Orders();
         Meal mealstorage;
         Meal dessertstorage;
@@ -65,8 +80,9 @@ public class ProcessOrder{
                     }while(userin != 1 && userin != 2);
                     if (userin == 1) {
                         //sendToChef(order);
-                        order = new Orders(); //clean order
-                        System.out.println("\r\nOrder has been processed.");
+						return order;
+                        //order = new Orders(); //clean order
+                        //System.out.println("\r\nOrder has been processed.");
                     }
                     break;
                 case 4:
@@ -79,6 +95,7 @@ public class ProcessOrder{
             }
         }
         System.out.println("Bye.");
+		throw new UnsupportedOperationException("No order has been processed.");
     }
     
     private int userInput() { //get keyboard input and check if it's an integer
@@ -100,83 +117,55 @@ public class ProcessOrder{
         ArrayList<Meal> tempcuisine;
         int userin, userin2;
         
-        while(true){
-            arrayListPrinter(menu.getAllCuisines());
-            try {
-                userin = userInput();
-                userin--; //substract because array indexing starts at 0
-                tempcuisine = menu.getCuisine(userin);
-                break;
-            }
-            catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid item index.");
-            }
-        }
-            
-        while(true){
-            arrayListPrinter(tempcuisine);
-            try {
-                userin2 = userInput();
-                userin2--;
-                tempmeal = menu.getMeal(userin,userin2);
-                return tempmeal;
-            }
-            catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid item index.");
-            }
-        }
+        arrayListPrinter(menu.getAllCuisines());
+        userin = userInput();
+        userin--; //substract because array indexing starts at 0
+        tempcuisine = menu.getCuisine(userin);
+    
+        arrayListPrinter(tempcuisine);
+        userin2 = userInput();
+        userin2--;
+        tempmeal = menu.getMeal(userin,userin2);
+        return tempmeal;
     }
     
     private Meal processDessert() {
         int userin;
-        
-        while(true){
-            arrayListPrinter(menu.getAllDesserts());
-            try {
-                userin = userInput();
-                userin--;
-                return menu.getDessert(userin);
-            }
-            catch (IndexOutOfBoundsException e) {
-                System.out.println("Invalid item index.");
-            }
-        }
+
+        arrayListPrinter(menu.getAllDesserts());
+        userin = userInput();
+        userin--;
+        return menu.getDessert(userin);
     }
 
     private Drink processDrink() {
         Drink tempdrink;
         int userin, userin2;
         
-        while (true) {
-            arrayListPrinter(menu.getAllDrinks());
-            try {
-                userin = userInput();
-                userin--;
-                tempdrink = new Drink(menu.getDrink(userin)); //needs a new object and not a reference so that we can edit lemon and ice states
-                System.out.println("");
-                System.out.println("1. Add lemon.");
-                System.out.println("2. Add ice.");
-                System.out.println("3. Add both.");
-                System.out.println("4. None.");
-                userin2 = userInput();
-                if (userin2==1 || userin2==3) {
-                    tempdrink.setLemon();
-                }
-                if (userin2==2 || userin2==3) {
-                    tempdrink.setIce();
-                }
-                if (userin2>=1 && userin2<=4) { 
-                    return tempdrink;
-                    //this if-statement isn't necessary but it keeps the menu consistent
-                    //otherwise any integer other than 1,2,3 would return drink with no ice or lemon
-                } 
-                else {
-                    System.out.println("Invalid input.");
-                }
-            }
-            catch(IndexOutOfBoundsException e) {
-                System.out.println("Invalid item index.");
-            }
+        arrayListPrinter(menu.getAllDrinks());
+        userin = userInput();
+        userin--;
+        tempdrink = new Drink(menu.getDrink(userin)); //needs a new object and not a reference so that we can edit lemon and ice states
+        System.out.println("");
+        System.out.println("1. Add lemon.");
+        System.out.println("2. Add ice.");
+        System.out.println("3. Add both.");
+        System.out.println("4. None.");
+        userin2 = userInput();
+        if (userin2==1 || userin2==3) {
+            tempdrink.setLemon();
+        }
+        if (userin2==2 || userin2==3) {
+            tempdrink.setIce();
+        }
+        if (userin2>=1 && userin2<=4) { 
+            return tempdrink;
+            //this if-statement isn't necessary but it keeps the menu consistent
+            //otherwise any integer other than 1,2,3 would return drink with no ice or lemon
+        } 
+        else {
+            System.out.println("Invalid input.");
+		    throw new UnsupportedOperationException("Invalid request.");
         }
     }
     

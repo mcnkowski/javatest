@@ -7,7 +7,7 @@ import java.util.Comparator;
 //import java.util.function.Consumer;
 
 public class FoodMenu {
-    private ArrayList<Dessert> desserts = new ArrayList<Dessert>();
+    private ArrayList<Meal> desserts = new ArrayList<Meal>();
     private ArrayList<Drink> drinks = new ArrayList<Drink>();
     private ArrayList<Cuisine> courses = new ArrayList<Cuisine>();
     
@@ -65,23 +65,23 @@ public class FoodMenu {
         return courses.get(cuisineID).items.get(mealID);
     }
     
-    public void addDessert(Dessert dessert) {
+    public void addDessert(Meal dessert) {
         this.desserts.add(dessert);
     }
     
-    public void addDesserts(Collection<? extends Dessert> desserts) {
+    public void addDesserts(Collection<? extends Meal> desserts) {
         this.desserts.addAll(desserts);
     }
     
-    public void addDesserts(Dessert[] desserts){
-        this.addDesserts(new ArrayList<Dessert>(Arrays.asList(desserts)));
+    public void addDesserts(Meal[] desserts){
+        this.addDesserts(new ArrayList<Meal>(Arrays.asList(desserts)));
     }
     
-    public ArrayList<Dessert> getAllDesserts(){
+    public ArrayList<Meal> getAllDesserts(){
         return desserts;
     }
     
-    public Dessert getDessert(int index) {
+    public Meal getDessert(int index) {
         return desserts.get(index);
     }
     
@@ -107,7 +107,7 @@ public class FoodMenu {
     
     public void sortMenu() { //sort menu items alphabetically; cuisines stay in the order they were added
         courses.forEach(x -> x.items.sort(Comparator.comparing(Meal::getName)));
-        desserts.sort(Comparator.comparing(Dessert::getName));
+        desserts.sort(Comparator.comparing(Meal::getName));
         drinks.sort(Comparator.comparing(Drink::getName));
     }
     

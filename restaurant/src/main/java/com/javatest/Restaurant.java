@@ -23,8 +23,8 @@ public class Restaurant {
         Meal itmeal1 = new Meal("Carbonara", 16.0);
         Meal itmeal2 = new Meal("Gnocchi",13.0);
         Meal itmeal3 = new Meal("Ravioli",14.0);
-        Dessert dessert1 = new Dessert("Panna Cotta",10.0);
-        Dessert dessert2 = new Dessert("Cheesecake", 9.0);
+        Meal dessert1 = new Meal("Panna Cotta",10.0);
+        Meal dessert2 = new Meal("Cheesecake", 9.0);
         Drink drink1 = new Drink("Water", 2.0);
         Drink drink2 = new Drink("Soda", 6.0);
         

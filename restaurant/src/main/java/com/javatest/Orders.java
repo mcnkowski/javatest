@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Orders{
     ArrayList<FoodItem> order = new ArrayList<FoodItem>();
     
-    public void addLunch(Meal meal, Dessert dessert){
+    public void addLunch(Meal meal, Meal dessert){
         Lunch lunch = new Lunch(meal,dessert);
         order.add(lunch);
     }
@@ -33,7 +33,7 @@ public class Orders{
     }
     
     private class Lunch extends FoodItem{
-        Lunch(Meal meal, Dessert dessert){
+        Lunch(Meal meal, Meal dessert){
             this.setName(meal.getName() + " + " + dessert.getName());
             this.setPrice(meal.getPrice() + dessert.getPrice());
         }
