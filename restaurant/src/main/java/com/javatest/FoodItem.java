@@ -1,27 +1,12 @@
 package com.javatest;
 
-public abstract class FoodItem {
-    protected String name;
-    protected double price;
+interface FoodItem {
     
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name)
     
-    public String getName() {
-        return name;
-    }
+    public String getName()
     
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+    public void setPrice(Double price)
     
-    public double getPrice() {
-        return price;
-    }
-    
-    public String toString() {
-        return name + " " + price;
-    }
-    
+    public double getPrice()
 }

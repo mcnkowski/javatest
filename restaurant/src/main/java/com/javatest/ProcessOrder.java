@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+
+
 public class ProcessOrder{
     private FoodMenu menu;
     private Scanner scanInput = new Scanner(System.in);
@@ -18,9 +20,8 @@ public class ProcessOrder{
     
     public void run(){
         Orders order = new Orders();
-        Meal mealstorage;
-        Dessert dessertstorage;
-        Drink drinkstorage;
+        FoodItem mealstorage;
+        FoodItem dessertstorage;
         int inputSwCase, userin;
         
         menuLoop:
@@ -46,14 +47,14 @@ public class ProcessOrder{
                     }
                     break;
                 case 2:
-                    drinkstorage = processDrink();
+                    mealstorage = processDrink();
                     System.out.println("");
                     System.out.println("Confirm order:\r\n1.Yes\r\n2.No");
                     do {
                         userin = userInput();
                     }while(userin != 1 && userin != 2);
                     if (userin == 1) {
-                        order.addDrink(drinkstorage);
+                        order.addDrink(mealstorage);
                     }
                     break;
                 case 3:
@@ -95,9 +96,9 @@ public class ProcessOrder{
         }
     }
     
-    private Meal processMeal(){
-        Meal tempmeal;
-        ArrayList<Meal> tempcuisine;
+    private FoodItem processMeal(){
+        FoodItem tempmeal;
+        ArrayList<FoodItem> tempcuisine;
         int userin, userin2;
         
         while(true){
@@ -127,7 +128,7 @@ public class ProcessOrder{
         }
     }
     
-    private Dessert processDessert() {
+    private FoodItem processDessert() {
         int userin;
         
         while(true){
@@ -143,8 +144,8 @@ public class ProcessOrder{
         }
     }
 
-    private Drink processDrink() {
-        Drink tempdrink;
+    private FoodItem processDrink() { //this is all wrong
+        FoodItem tempdrink;
         int userin, userin2;
         
         while (true) {
@@ -152,7 +153,7 @@ public class ProcessOrder{
             try {
                 userin = userInput();
                 userin--;
-                tempdrink = new Drink(menu.getDrink(userin)); //needs a new object and not a reference so that we can edit lemon and ice states
+				tempdrink = menu.getDrink(userin);
                 System.out.println("");
                 System.out.println("1. Add lemon.");
                 System.out.println("2. Add ice.");
@@ -160,10 +161,10 @@ public class ProcessOrder{
                 System.out.println("4. None.");
                 userin2 = userInput();
                 if (userin2==1 || userin2==3) {
-                    tempdrink.setLemon();
+                    tempdrink = tempdrink.with(Food.lemon);
                 }
                 if (userin2==2 || userin2==3) {
-                    tempdrink.setIce();
+                    tempdrink = tempdrink.with(Food.ice);
                 }
                 if (userin2>=1 && userin2<=4) { 
                     return tempdrink;
@@ -199,4 +200,5 @@ public class ProcessOrder{
             return false;
         }
     }
+	
 }

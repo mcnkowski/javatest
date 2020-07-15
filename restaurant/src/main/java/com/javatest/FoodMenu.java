@@ -7,8 +7,8 @@ import java.util.Comparator;
 //import java.util.function.Consumer;
 
 public class FoodMenu {
-    private ArrayList<Dessert> desserts = new ArrayList<Dessert>();
-    private ArrayList<Drink> drinks = new ArrayList<Drink>();
+    private ArrayList<FoodItem> desserts = new ArrayList<FoodItem>();
+    private ArrayList<FoodItem> drinks = new ArrayList<FoodItem>();
     private ArrayList<Cuisine> courses = new ArrayList<Cuisine>();
     
     public void createCuisine(String name) {
@@ -17,13 +17,13 @@ public class FoodMenu {
         }
     }
     
-    public void createCuisine(String name,ArrayList<Meal> meals) {
+    public void createCuisine(String name,ArrayList<FoodItem> meals) {
         if (courses.stream().noneMatch((x) -> x.name == name)) {
             courses.add(new Cuisine(name,meals));
         }
     }
     
-    /*public void addCourse(String name, Meal meal) {
+    /*public void addCourse(String name, FoodItem meal) {
         Consumer<Cuisine> LExpr = x -> {
             if(x.name == name){
                 x.items.add(meal);
@@ -32,7 +32,7 @@ public class FoodMenu {
         courses.forEach(LExpr);
     }*/
     
-    public void addCourse(String cuisineName, Meal meal) {
+    public void addCourse(String cuisineName, FoodItem meal) {
         courses.forEach(x -> {
             if(x.name == cuisineName){ //Go through all cuisines and if matching name is found, add meals to the menu
                 x.items.add(meal);
@@ -40,7 +40,7 @@ public class FoodMenu {
         });
     }
 
-    public void addCourses(String cuisineName, Collection<? extends Meal> meals){
+    public void addCourses(String cuisineName, Collection<? extends FoodItem> meals){
         courses.forEach(x -> {
             if(x.name == cuisineName){
                 x.items.addAll(meals);
@@ -48,8 +48,8 @@ public class FoodMenu {
         });
     }
     
-    public void addCourses(String cuisineName, Meal[] meals){
-        ArrayList<Meal> courses = new ArrayList<Meal>(Arrays.asList(meals));
+    public void addCourses(String cuisineName, FoodItem[] meals){
+        ArrayList<FoodItem> courses = new ArrayList<FoodItem>(Arrays.asList(meals));
         this.addCourses(cuisineName,courses);
     }
     
@@ -57,72 +57,72 @@ public class FoodMenu {
         return courses;
     }
     
-    public ArrayList<Meal> getCuisine(int index){
+    public ArrayList<FoodItem> getCuisine(int index){
         return courses.get(index).items;
     }
     
-    public Meal getMeal(int cuisineID, int mealID){
+    public FoodItem getMeal(int cuisineID, int mealID){
         return courses.get(cuisineID).items.get(mealID);
     }
     
-    public void addDessert(Dessert dessert) {
+    public void addDessert(FoodItem dessert) {
         this.desserts.add(dessert);
     }
     
-    public void addDesserts(Collection<? extends Dessert> desserts) {
+    public void addDesserts(Collection<? extends FoodItem> desserts) {
         this.desserts.addAll(desserts);
     }
     
-    public void addDesserts(Dessert[] desserts){
-        this.addDesserts(new ArrayList<Dessert>(Arrays.asList(desserts)));
+    public void addDesserts(FoodItem[] desserts){
+        this.addDesserts(new ArrayList<FoodItem>(Arrays.asList(desserts)));
     }
     
-    public ArrayList<Dessert> getAllDesserts(){
+    public ArrayList<FoodItem> getAllDesserts(){
         return desserts;
     }
     
-    public Dessert getDessert(int index) {
+    public FoodItem getDessert(int index) {
         return desserts.get(index);
     }
     
-    public void addDrink(Drink drink) {
+    public void addDrink(FoodItem drink) {
         this.drinks.add(drink);
     }
     
-    public void addDrinks(Collection<? extends Drink> drinks) {
+    public void addDrinks(Collection<? extends FoodItem> drinks) {
         this.drinks.addAll(drinks);
     }
     
-    public void addDrinks(Drink[] drinks){
-        this.addDrinks(new ArrayList<Drink>(Arrays.asList(drinks)));
+    public void addDrinks(FoodItem[] drinks){
+        this.addDrinks(new ArrayList<FoodItem>(Arrays.asList(drinks)));
     }
     
-    public ArrayList<Drink> getAllDrinks(){
+    public ArrayList<FoodItem> getAllDrinks(){
         return drinks;
     }
     
-    public Drink getDrink(int index) {
+    public FoodItem getDrink(int index) {
         return drinks.get(index);
     }
     
     public void sortMenu() { //sort menu items alphabetically; cuisines stay in the order they were added
-        courses.forEach(x -> x.items.sort(Comparator.comparing(Meal::getName)));
-        desserts.sort(Comparator.comparing(Dessert::getName));
-        drinks.sort(Comparator.comparing(Drink::getName));
+        courses.forEach(x -> x.items.sort(Comparator.comparing(FoodItem::getName)));
+        desserts.sort(Comparator.comparing(FoodItem::getName));
+        drinks.sort(Comparator.comparing(FoodItem::getName));
     }
     
     public class Cuisine {
         protected String name;
-        protected ArrayList<Meal> items;
+        protected ArrayList<FoodItem> items;
         
-        Cuisine(String name, ArrayList<Meal> items) {
+        Cuisine(String name, ArrayList<FoodItem> items) {
             this.name = name;
             this.items = items;
         }
         
         Cuisine(String name) {
             this.name = name;
-            items = new ArrayList<Meal>();
+            items = new ArrayList<FoodItem>();
         }
         
         public Boolean isEmpty() {
@@ -131,8 +131,8 @@ public class FoodMenu {
         
         public String toString(){
             String output = this.name;
-            for (int x=0; x<items.size(); x++){
-                output = output.concat("\r\n" + this.items.get(x).toString());
+            for (int x=0; x<items.size(); x++){ //for (FoodItem item : items)
+                output = output.concat("\r\n" + this.items.get(x).toString()); //= output.concat("\r\n" + item.toString());
             }
             return output;
         }

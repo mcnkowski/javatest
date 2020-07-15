@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Orders{
     ArrayList<FoodItem> order = new ArrayList<FoodItem>();
     
+    /*public void addOrder(FoodItem item){
+        order.add(item);
+    }*/
+    
     public void addLunch(Meal meal, Dessert dessert){
         Lunch lunch = new Lunch(meal,dessert);
         order.add(lunch);
@@ -24,7 +28,7 @@ public class Orders{
     }
     
     public String toString(){
-        String output = "Order: ";
+        String output = "Order: "; //TODO
         for (int x=0; x<order.size(); x++){
             output = output.concat("\r\n" + order.get(x).toString());
         }

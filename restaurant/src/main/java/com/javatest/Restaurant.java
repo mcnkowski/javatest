@@ -14,19 +14,19 @@ public class Restaurant {
     }
     
     private static FoodMenu createMenu(){
-        Meal plmeal1 = new Meal("Pierogi",11.0);
-        Meal plmeal2 = new Meal("Cutlet",12.0);
-        Meal plmeal3 = new Meal("Bigos",10.0);
-        Meal mexmeal1 = new Meal("Enchiladas",15.0);
-        Meal mexmeal2 = new Meal("Quesadilla", 12.0);
-        Meal mexmeal3 = new Meal("Burrito", 11.0);
-        Meal itmeal1 = new Meal("Carbonara", 16.0);
-        Meal itmeal2 = new Meal("Gnocchi",13.0);
-        Meal itmeal3 = new Meal("Ravioli",14.0);
-        Dessert dessert1 = new Dessert("Panna Cotta",10.0);
-        Dessert dessert2 = new Dessert("Cheesecake", 9.0);
-        Drink drink1 = new Drink("Water", 2.0);
-        Drink drink2 = new Drink("Soda", 6.0);
+        FoodItem plmeal1 = new FoodItem("Pierogi",11.0);
+        FoodItem plmeal2 = new FoodItem("Cutlet",12.0);
+        FoodItem plmeal3 = new FoodItem("Bigos",10.0);
+        FoodItem mexmeal1 = new FoodItem("Enchiladas",15.0);
+        FoodItem mexmeal2 = new FoodItem("Quesadilla", 12.0);
+        FoodItem mexmeal3 = new FoodItem("Burrito", 11.0);
+        FoodItem itmeal1 = new FoodItem("Carbonara", 16.0);
+        FoodItem itmeal2 = new FoodItem("Gnocchi",13.0);
+        FoodItem itmeal3 = new FoodItem("Ravioli",14.0);
+        FoodItem dessert1 = new FoodItem("Panna Cotta",10.0);
+        FoodItem dessert2 = new FoodItem("Cheesecake", 9.0);
+        FoodItem drink1 = new FoodItem("Water", 2.0);
+        FoodItem drink2 = new FoodItem("Soda", 6.0);
         
         FoodMenu menu = new FoodMenu();
         menu.createCuisine("Polish");
